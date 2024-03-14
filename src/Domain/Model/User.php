@@ -1,5 +1,5 @@
 <?php
-namespace App\Model;
+namespace App\Domain\Model;
 
 class User {
     public function getUserData() {

@@ -1,10 +1,20 @@
 <?php
+
+use DI\Container;
+// use UMA\DIC\Container;
 use Slim\Factory\AppFactory;
 
-require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+
+// Criação do container atraves bo bootstrap 
+$container = require_once __DIR__ . '/../bootstrap.php';
+
+AppFactory::setContainer($container);
 
 $app = AppFactory::create();
 
-$app->get('/', \App\Controller\HomeController::class . ':index');
+// Configuração das rotas
+$routes = require __dir__ . '/../config/routes.php';
+$routes($app);
 
 $app->run();

@@ -3,14 +3,21 @@ namespace App\Controller;
 
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
-use App\Domain\Model\User;
+use App\Domain\Service\UserService;
 
 class HomeController {
-    public function index(Request $request, Response $response, $args) {
-        $userModel = new User();
-        $userData = $userModel->getUserData();
 
-        extract($userData);
+    private $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
+    public function index(Request $request, Response $response) {
+        $user = $this->userService->getByID(1);
+
+        extract($user);
         
         ob_start();
         include __DIR__ . '/../../templates/User/home.php';

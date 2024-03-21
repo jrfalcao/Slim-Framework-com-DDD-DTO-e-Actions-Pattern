@@ -1,14 +1,24 @@
 <?php 
+namespace App\Domain\Dto;
 
-namespace App\Presentation\ViewModel;
+// use Symfony\Component\Validator\Constraints as Assert;
 
 class UserDto {
 
     public function __construct(
         private int $id, 
-        private string $name, 
+        private string $nome, 
         private string $email
     ) {  }
+
+    public function getArray()
+    {
+        return [
+            'id' => $this->id,
+            'nome' => $this->nome,
+            'email' => $this->email
+        ];
+    }
 
     /**
      * Get the value of id
@@ -33,9 +43,9 @@ class UserDto {
     /**
      * Get the value of name
      */ 
-    public function getName()
+    public function getNome()
     {
-        return $this->name;
+        return $this->nome;
     }
 
     /**
@@ -43,9 +53,9 @@ class UserDto {
      *
      * @return  self
      */ 
-    public function setName($name)
+    public function setNome($nome)
     {
-        $this->name = $name;
+        $this->nome = $nome;
 
         return $this;
     }

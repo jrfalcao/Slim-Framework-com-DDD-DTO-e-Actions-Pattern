@@ -34,7 +34,7 @@ services:
 
   # Serviço MySQL
   db:
-    image: mysql:5.7.22
+    image: mysql:8.3
     container_name: mysql_slim_app
     restart: unless-stopped
     environment:
